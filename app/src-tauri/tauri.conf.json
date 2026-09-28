@@ -1,0 +1,76 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "DaD Companion",
+  "version": "1.0.0",
+  "identifier": "app.dadcompanion.desktop",
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "pnpm build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "DaD Companion",
+        "width": 1280,
+        "height": 800,
+        "minWidth": 960,
+        "minHeight": 640,
+        "center": true,
+        "decorations": false,
+        "shadow": true,
+        "backgroundColor": "#0e0c0a"
+      }
+    ],
+    "security": {
+      "csp": {
+        "default-src": "'self'",
+        "img-src": "'self' data: icon: http://icon.localhost",
+        "style-src": "'self' 'unsafe-inline'",
+        "connect-src": "'self' ipc: http://ipc.localhost"
+      }
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis"
+    ],
+    "resources": {
+      "../../assets/items.json": "assets/items.json",
+      "../../assets/icons.pak": "assets/icons.pak",
+      "../../assets/quests.json": "assets/quests.json",
+      "../../assets/equipment_slots.json": "assets/equipment_slots.json",
+      "../../assets/starter/": "assets/starter/"
+    },
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "createUpdaterArtifacts": true,
+    "publisher": "DaD Companion",
+    "shortDescription": "Market prices, hover values, auto listing and stash sorting for Dark and Darker",
+    "windows": {
+      "nsis": {
+        "installMode": "currentUser"
+      }
+    }
+  },
+  "plugins": {
+    "updater": {
+      "requireSignedVersion": true,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEU2RjJDNTdERDI1NDZEMjMKUldRamJWVFNmY1h5NW95T1JrUkJ1cXBsRnhUa3p4S2NkSm5uU1l5WS9xM29HME9kUDhOUjBHak8K",
+      "endpoints": [
+        "https://github.com/Davidmycodeguy/dad-companion/releases/latest/download/latest.json"
+      ],
+      "windows": {
+        "installMode": "passive"
+      }
+    }
+  }
+}

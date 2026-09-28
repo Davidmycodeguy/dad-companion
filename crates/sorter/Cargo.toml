@@ -1,0 +1,22 @@
+[package]
+name = "sorter"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+description = "Stash sorting: planning where every item goes, and learning how the player likes them sorted"
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+state = { path = "../state" }
+game-data = { path = "../game-data" }
+# Running a plan in the game: the real mouse (`input`) and before/after screen captures (`screen`).
+input = { path = "../input" }
+screen = { path = "../screen" }
+# Event store for sort learning. `bundled` compiles SQLite from source (no system SQLite needed);
+# already used the same way by crates/appdata and crates/market, so it is proven to build here.
+rusqlite = { version = "0.40.2", features = ["bundled"] }
+
+[dev-dependencies]
+tempfile = "3"

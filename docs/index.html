@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dark and Darker Companion</title>
+  <meta name="description" content="The free AI market tool for Dark and Darker: hover values, AI pricing of every roll, an auto lister, stash sorter and quest tracker. Runs on your PC.">
+  <meta property="og:title" content="Dark and Darker Companion">
+  <meta property="og:description" content="The free AI market tool for Dark and Darker. Know what every item is really worth.">
+  <meta property="og:image" content="https://davidmycodeguy.github.io/dad-companion/images/video.jpg">
+  <link rel="icon" href="images/logo-dark.png">
+  <style>
+    :root {
+      --bg: #0e0c0a;
+      --panel: #17130f;
+      --line: #2e261d;
+      --text: #efe6d4;
+      --muted: #b9ad98;
+      --gold: #e6bd62;
+      --green: #7ec978;
+      --red: #d66054;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: radial-gradient(900px 520px at 50% -80px, rgba(214, 150, 60, 0.22), transparent 70%), var(--bg);
+      color: var(--text);
+      font: 17px/1.6 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    a { color: var(--gold); }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    h1, h2, h3 { font-family: "Palatino Linotype", Palatino, Georgia, serif; font-weight: 700; line-height: 1.2; }
+    h2 { font-size: clamp(26px, 4vw, 36px); margin: 0 0 14px; }
+    h3 { font-size: 21px; margin: 0 0 6px; }
+    p { margin: 0 0 12px; }
+    .muted { color: var(--muted); }
+
+    header { text-align: center; padding: 56px 0 28px; }
+    header img.logo { width: min(340px, 78vw); height: auto; }
+    .tagline { font-size: clamp(19px, 2.6vw, 24px); margin: 18px auto 6px; max-width: 700px; }
+    .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 26px 0 8px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; border-radius: 10px;
+      font-weight: 600; text-decoration: none; border: 1px solid var(--line);
+    }
+    .btn.primary { background: linear-gradient(180deg, #f0c872, #c9982f); color: #1b1408; border-color: #e6bd62; }
+    .btn.ghost { color: var(--text); background: rgba(255, 255, 255, 0.03); }
+    .small { font-size: 14px; }
+
+    section { padding: 44px 0; }
+    .video {
+      display: block; width: 100%; border-radius: 14px; border: 1px solid var(--line);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55); background: #000;
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+    .card .num { color: var(--gold); font-weight: 700; }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+    .split img { width: 100%; height: auto; border-radius: 12px; }
+    .split img.value-card { max-width: 360px; justify-self: center; }
+    .compare { text-align: center; }
+    .compare img { max-width: 640px; width: 100%; border-radius: 12px; }
+    .big { font-size: clamp(22px, 3vw, 30px); font-weight: 700; margin: 18px 0 6px; }
+    .red { color: var(--red); }
+    .gold { color: var(--gold); }
+    .green { color: var(--green); }
+    .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+    .shots figure { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .shots img { width: 100%; height: auto; display: block; }
+    .shots figcaption { padding: 12px 16px; color: var(--muted); font-size: 15px; }
+    ol.steps { padding-left: 22px; margin: 0; }
+    ol.steps li { margin-bottom: 10px; }
+    code { background: #221b14; border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; font-size: 15px; }
+    footer { border-top: 1px solid var(--line); padding: 28px 0 44px; color: var(--muted); font-size: 14px; text-align: center; }
+    @media (max-width: 760px) {
+      .split { grid-template-columns: 1fr; }
+      header { padding-top: 36px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <img class="logo" src="images/logo-dark.png" alt="Dark and Darker Companion">
+    <p class="tagline"><b>The free AI market tool for Dark and Darker.</b></p>
+    <p class="muted">Know what every item is really worth, list it at the right price, and collect your gold.<br>Everything runs on your PC.</p>
+    <div class="actions">
+      <a class="btn primary" href="https://github.com/Davidmycodeguy/dad-companion/releases/latest">Download for Windows</a>
+      <a class="btn ghost" href="https://github.com/Davidmycodeguy/dad-companion">View on GitHub</a>
+    </div>
+    <p class="small muted">Free · No subscription · No account · Windows 10 and 11</p>
+  </header>
+
+  <section id="video" class="wrap">
+    <video class="video" controls preload="metadata" poster="media/poster.jpg" playsinline>
+      <source src="media/dark-and-darker-companion.mp4" type="video/mp4">
+      <a href="media/dark-and-darker-companion.mp4">Watch the video</a>
+    </video>
+  </section>
+
+  <section class="wrap">
+    <div class="grid">
+      <div class="card">
+        <h3>Hover any item</h3>
+        <p class="muted">In the stash, the Marketplace or at a merchant: what it really sells for and exactly what you keep after the fee, a quarter of a second after the cursor rests.</p>
+      </div>
+      <div class="card">
+        <h3>AI trained on the market</h3>
+        <p class="muted">It learns what every stat is worth in gold, and which stats are worth more together.</p>
+      </div>
+      <div class="card">
+        <h3>Auto lister</h3>
+        <p class="muted">Prices your items against the live market, shows every price and fee first, lists them for you and collects the gold.</p>
+      </div>
+      <div class="card">
+        <h3>Private</h3>
+        <p class="muted">No uploads, no telemetry, no account. Your data never leaves your PC.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="split">
+      <div>
+        <h2>How the AI prices an item</h2>
+        <p class="muted">The app reads the Marketplace listing by listing into a database on your PC and trains its price model there in a few seconds.</p>
+        <p class="muted">For every item it learns what each random roll adds in gold, and how pairs of rolls change the price. On Legendary Heavy Gauntlets, for example, <span class="green"><b>Physical Power with Strength sells for about 17% more</b></span> as a pair.</p>
+        <p class="muted">The card also shows where the item sits among live listings, so you never undercut your best rolls.</p>
+      </div>
+      <img class="value-card" src="images/ai-card.png" alt="Value card showing gold per roll and roll pairs">
+    </div>
+  </section>
+
+  <section class="wrap compare">
+    <h2>Same sword, two prices</h2>
+    <img src="images/grimvault-vs.png" alt="GrimVault 1,300 vs DaD Companion 4,346 on the same Legendary Short Sword">
+    <p class="big">GrimVault <span class="red">1,300</span> · DaD Companion <span class="gold">4,346</span></p>
+    <p class="muted">Hovered with both tools on 28 September 2026. Similar Legendary Short Swords were listed at 4,222 to 8,888 that day, so selling at 1,300 would have left about 3,000 gold on the table.<br>One measured example, not a promise about every item.</p>
+  </section>
+
+  <section class="wrap">
+    <h2>See it in action</h2>
+    <div class="shots">
+      <figure><img src="images/hover.gif" alt="Hover values in game" loading="lazy"><figcaption>Hover values beside the game's tooltip</figcaption></figure>
+      <figure><img src="images/market.gif" alt="Market research" loading="lazy"><figcaption>Market research for any item</figcaption></figure>
+      <figure><img src="images/lister.gif" alt="Auto lister plan" loading="lazy"><figcaption>Review every price and fee before listing</figcaption></figure>
+      <figure><img src="images/sorter.png" alt="Stash sorter" loading="lazy"><figcaption>Stash sorter</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="split">
+      <div class="card">
+        <h2>Get started</h2>
+        <ol class="steps">
+          <li>Download <code>DaD.Companion_x.y.z_x64-setup.exe</code> from the <a href="https://github.com/Davidmycodeguy/dad-companion/releases/latest">latest release</a>.</li>
+          <li>Run it. If Windows says <i>"Windows protected your PC"</i>, click <b>More info</b> then <b>Run anyway</b>.</li>
+          <li>Install <a href="https://npcap.com/#download">Npcap</a> (free) so the app can follow your stash and listings.</li>
+          <li>Start Dark and Darker, then DaD Companion. Market data is included, so values work right away.</li>
+        </ol>
+      </div>
+      <div>
+        <h2>Open to contributions</h2>
+        <p class="muted">The code is on GitHub. Found a bug or want a feature? Open an issue or send a pull request.</p>
+        <p class="muted small">Source-available, all rights reserved: you can use the releases, read the code and contribute, but not copy or redistribute it. See the <a href="https://github.com/Davidmycodeguy/dad-companion/blob/main/LICENSE">license</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="wrap">
+    Dark and Darker is a trademark of IRONMACE. This project is not affiliated with or endorsed by IRONMACE.<br>
+    Automating game input may break the game's Terms of Service; use it at your own risk.
+  </footer>
+</body>
+</html>

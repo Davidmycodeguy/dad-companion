@@ -1,0 +1,203 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * One dark theme. Warm charcoal surfaces, parchment text, coin gold as the only accent; rarity
+ * colours (the same as the in-game value card) are reserved for rarity. Fonts are the Windows
+ * system fonts the value card uses, so nothing is downloaded.
+ */
+:root {
+  --background: #0e0c0a;
+  --foreground: #ebe3d3;
+  --card: #15120f;
+  --card-foreground: #ebe3d3;
+  --popover: #1a1612;
+  --popover-foreground: #ebe3d3;
+  --primary: #d8aa4f;
+  --primary-foreground: #1a1206;
+  --secondary: #221d17;
+  --secondary-foreground: #ebe3d3;
+  --muted: #1c1813;
+  --muted-foreground: #9b8f7d;
+  --accent: #262019;
+  --accent-foreground: #f3ead8;
+  --destructive: #e0604f;
+  --border: #2b251d;
+  --input: #3a3228;
+  --ring: #9c7a36;
+  --radius: 0.5rem;
+
+  --chart-1: #d8aa4f;
+  --chart-2: #8a7f70;
+  --chart-3: #3f8cff;
+  --chart-4: #8cc26b;
+  --chart-5: #e0604f;
+
+  --sidebar: #0b0a08;
+  --sidebar-foreground: #cfc5b3;
+  --sidebar-primary: #d8aa4f;
+  --sidebar-primary-foreground: #1a1206;
+  --sidebar-accent: #1d1914;
+  --sidebar-accent-foreground: #f3ead8;
+  --sidebar-border: #211c16;
+  --sidebar-ring: #d8aa4f;
+
+  --gold: #e6bd62;
+  --profit: #8cc26b;
+  --loss: #e0705f;
+  --roll: #8fb4f0;
+
+  --rarity-poor: #9d9d9d;
+  --rarity-common: #e6e6e6;
+  --rarity-uncommon: #7cd23c;
+  --rarity-rare: #3f8cff;
+  --rarity-epic: #b35cf2;
+  --rarity-legendary: #ff9a1f;
+  --rarity-unique: #e8c65a;
+  --rarity-artifact: #e2463c;
+  --rarity-unknown: #8a7f70;
+
+  --titlebar-height: 2.75rem;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  --font-heading: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  --font-num: Bahnschrift, "Segoe UI", system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --color-gold: var(--gold);
+  --color-profit: var(--profit);
+  --color-loss: var(--loss);
+  --color-roll: var(--roll);
+  --color-rarity-poor: var(--rarity-poor);
+  --color-rarity-common: var(--rarity-common);
+  --color-rarity-uncommon: var(--rarity-uncommon);
+  --color-rarity-rare: var(--rarity-rare);
+  --color-rarity-epic: var(--rarity-epic);
+  --color-rarity-legendary: var(--rarity-legendary);
+  --color-rarity-unique: var(--rarity-unique);
+  --color-rarity-artifact: var(--rarity-artifact);
+  --color-rarity-unknown: var(--rarity-unknown);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    @apply bg-background text-foreground;
+    overflow: hidden;
+    user-select: none;
+    cursor: default;
+  }
+  input,
+  textarea,
+  [contenteditable] {
+    user-select: text;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 35%, transparent);
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2e271f;
+    border: 3px solid transparent;
+    border-radius: 999px;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #43392c;
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* An inventory slot like the game's: dark inset square lit from within by the item's rarity. */
+@utility item-slot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 4px;
+  border: 1px solid color-mix(in oklab, var(--slot-rarity, var(--rarity-unknown)) 42%, #2b251d);
+  background:
+    radial-gradient(
+      circle at 50% 62%,
+      color-mix(in oklab, var(--slot-rarity, var(--rarity-unknown)) 24%, transparent) 0%,
+      transparent 72%
+    ),
+    #0a0907;
+  box-shadow:
+    inset 0 0 14px color-mix(in oklab, var(--slot-rarity, var(--rarity-unknown)) 16%, transparent),
+    inset 0 1px 0 rgb(255 255 255 / 0.03);
+}
+
+/* The game's tooltip rule: two thin lines in the item's rarity colour. */
+@utility rarity-rule {
+  height: 4px;
+  border-top: 1px solid color-mix(in oklab, var(--rule-rarity, var(--rarity-unknown)) 70%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, var(--rule-rarity, var(--rarity-unknown)) 40%, transparent);
+}
+
+/* The overlay's card window: only the card shows; the rest of the window is see-through. */
+html.overlay,
+html.overlay body {
+  background: transparent;
+}

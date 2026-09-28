@@ -1,0 +1,12 @@
+Third-party material in this project
+
+Dark and Darker
+---------------
+The game message definitions in protos/ and the game data in assets/ (item data, icons, quests)
+describe Dark and Darker. Dark and Darker, its item data, names and icons are the property of
+IRONMACE. This project is not affiliated with or endorsed by IRONMACE.
+
+Open-source libraries
+---------------------
+The app is built with open-source Rust crates and npm packages (see Cargo.lock and
+app/pnpm-lock.yaml); each is used under its own license.

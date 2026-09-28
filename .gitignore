@@ -1,0 +1,11 @@
+target/
+node_modules/
+app/dist/
+*.log
+
+# AI assistant files stay local
+.claude/
+.superpowers/
+CLAUDE.md
+CLAUDE.local.md
+.mcp.json

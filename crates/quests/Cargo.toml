@@ -1,0 +1,16 @@
+[package]
+name = "quests"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+description = "Merchant quest tracking: the quest catalog, per-character progress, and the packet handler that follows quests from the game's lobby messages"
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+game-data = { path = "../game-data" }
+state = { path = "../state" }
+
+[dev-dependencies]
+tempfile = "3.27"

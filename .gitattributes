@@ -1,0 +1,7 @@
+* text=auto eol=lf
+*.pak binary
+*.png binary
+*.ico binary
+*.icns binary
+*.webp binary
+*.sqlite binary

@@ -1,0 +1,42 @@
+[package]
+name = "screen"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+description = "Windows screen capture, OCR and window/cursor helpers for hover values"
+
+[dependencies]
+tooltip = { path = "../tooltip" }
+thiserror.workspace = true
+
+[dependencies.windows]
+version = "0.62"
+features = [
+    # GDI screen capture (grab).
+    "Win32_Foundation",
+    "Win32_Graphics_Gdi",
+    # Cursor position, foreground window, overlay/game window lookup.
+    "Win32_UI_WindowsAndMessaging",
+    # make_process_dpi_aware.
+    "Win32_UI_HiDpi",
+    # Resolving a window's owning process exe name for game_has_focus.
+    "Win32_System_Threading",
+    # Initializing the WinRT apartment before using OcrEngine from a worker thread.
+    "Win32_System_WinRT",
+    # SoftwareBitmap, used to hand pixels to the OCR engine.
+    "Graphics_Imaging",
+    # The OCR engine itself.
+    "Media_Ocr",
+    # IAsyncOperation (RecognizeAsync's return type) and Rect (word bounding boxes).
+    "Foundation",
+    # IVectorView, used to iterate OcrResult.Lines() and OcrLine.Words().
+    "Foundation_Collections",
+    # DataWriter/IBuffer, used to copy frame pixels into a SoftwareBitmap without a temp file.
+    "Storage_Streams",
+    # OcrEngine::RecognizerLanguage's Language type.
+    "Globalization",
+]
+
+[dev-dependencies]
+game-data = { path = "../game-data" }
+image = { version = "0.25", default-features = false, features = ["png"] }

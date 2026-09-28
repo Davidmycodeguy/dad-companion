@@ -1,0 +1,30 @@
+[package]
+name = "input"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+description = "SendInput mouse/keyboard, global hotkeys and screen layout for clicking through the game's own UI"
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+
+[dependencies.windows]
+version = "0.62"
+features = [
+    # SendInput, INPUT/MOUSEINPUT/KEYBDINPUT, RegisterHotKey/UnregisterHotKey, HOT_KEY_MODIFIERS.
+    "Win32_UI_Input_KeyboardAndMouse",
+    # Message loop (MSG, GetMessageW/PeekMessageW/PostThreadMessageW), GetSystemMetrics, GetCursorPos,
+    # FindWindowW, GetClientRect, SetForegroundWindow, EnumWindows, GetWindowThreadProcessId.
+    "Win32_UI_WindowsAndMessaging",
+    # HWND, WPARAM/LPARAM, POINT, RECT and friends.
+    "Win32_Foundation",
+    # GetCurrentThreadId for the hotkey message-loop thread; OpenProcess/QueryFullProcessImageNameW
+    # to resolve a window's owning exe name when finding the game window by process.
+    "Win32_System_Threading",
+    # ClientToScreen (yes, it lives here, not in WindowsAndMessaging).
+    "Win32_Graphics_Gdi",
+]
+
+[dev-dependencies]

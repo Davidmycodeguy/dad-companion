@@ -1,0 +1,32 @@
+[workspace]
+resolver = "2"
+members = ["app/src-tauri", "crates/*"]
+
+[workspace.package]
+edition = "2021"
+license = "LicenseRef-DaD-Companion"
+rust-version = "1.88"
+
+[workspace.dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+
+# Release builds: small and fast. Panics unwind (not abort) so a bug in one thread, e.g. hover
+# values, is caught there instead of closing the app.
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+strip = true
+
+# Debug builds stay quick to compile, but the pixel and OCR work of hover values runs optimized so
+# timings measured while developing are real.
+[profile.dev.package.tooltip]
+opt-level = 3
+[profile.dev.package.screen]
+opt-level = 3
+[profile.dev.package.market]
+opt-level = 3
+[profile.dev.package."*"]
+opt-level = 2
